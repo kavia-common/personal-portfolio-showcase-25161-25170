@@ -1,0 +1,159 @@
+:root{
+  /* Design tokens from design_system_T0002 */
+  --color-bg-root: #adafb3; /* style_0 */
+  --color-dark-surface: #1d1d1f; /* style_75 */
+  --color-light-surface: #f5f5f5; /* style_79 */
+  --color-on-dark: #f5f5f5; /* typo_17 */
+  --color-on-light: #141414; /* typo_20 */
+  --color-muted-dark: #ebebeb; /* typo_19 */
+  --color-muted-light: #1f1f1f; /* typo_21 */
+  --color-primary: #0047ff; /* color_0047ff */
+  --color-chip-dark: #262629; /* style_77 */
+  --color-chip-light: #ffffff; /* style_81 */
+  --color-chip-border: #e5e5e5; /* style_78/82 */
+  --shadow-0: 0 1px 2px #000e33; /* style_75 */
+  --shadow-1: 0 1px 1px #000e33; /* style_77/81/82 */
+  --shadow-2a: 0 3px 2px #0047ff, 0 1.5px 1px #001f70; /* style_84 */
+  --radius-24: 24px;
+  --radius-16: 16px;
+  --radius-6: 6px;
+  --radius-4: 4px;
+  --radius-80: 80px;
+  --font-family: "Lexend", Arial, sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font-family);}
+
+.screen{
+  position:relative;
+  width:1200px;
+  height:800px;
+  overflow:hidden;
+}
+.root-bg{
+  position:absolute;inset:0;
+  background:var(--color-bg-root);
+  border-radius:var(--radius-24);
+}
+
+/* Double-view frame per JSON dimensions (853x444) positioned similarly */
+.double-view{
+  position:absolute;
+  left:81px; top:178px; /* aligned to appear centered as in figma PNG */
+  width:853px; height:444px;
+  display:flex; flex-direction:row; align-items:flex-start;
+  gap:1px; /* visual divider space accounted by divider element width */
+}
+
+/* Cards */
+.card{
+  position:relative;
+  width:426px;
+  height:444px;
+  border-radius:var(--radius-16);
+  box-shadow: var(--shadow-0);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.card-dark{ background: var(--color-dark-surface); }
+.card-light{ background: var(--color-light-surface); }
+
+/* Divider */
+.divider{
+  width:1px;height:444px;background:#e6e6e6;
+}
+
+/* Header */
+.hdr{
+  display:flex; align-items:center; justify-content:space-between;
+  height:44px; width:100%;
+}
+.nav-btn{
+  width:44px;height:44px;border:none;background:var(--color-chip-dark);
+  border-radius:var(--radius-80);box-shadow:var(--shadow-1);cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-btn.light{ background:#ffffff; }
+.nav-btn-spacer{ width:44px;height:44px; } /* for opposite side balance when only one arrow exists */
+
+.chev{width:24px;height:24px;}
+.chev-right{ transform: rotate(180deg); }
+
+.month-year{
+  display:flex;align-items:center;gap:12px;height:44px;
+}
+.month-pill, .year-pill{
+  min-width:86px;height:44px;display:flex;align-items:center;
+  padding:0; border-radius:var(--radius-6); box-shadow:var(--shadow-1);
+  background:var(--color-chip-dark);
+}
+.month-pill.light, .year-pill.light{
+  background:#ffffff;
+}
+.month-inner, .year-inner{
+  display:flex;align-items:center;justify-content:flex-start;
+  height:24px; gap:8px;
+  margin-left:12px; margin-right:12px;
+}
+.month-label{font-size:24px;font-weight:700;line-height:24px;letter-spacing:-0.24px;}
+.month-label-dark{color:var(--color-on-dark);}
+.month-label-light{color:var(--color-on-light);}
+.year-label{font-size:24px;font-weight:700;line-height:24px;letter-spacing:-0.24px;}
+.year-label-dark{color:var(--color-on-dark);}
+.year-label-light{color:var(--color-on-light);}
+.dropdown{width:8px;height:8px}
+
+/* Days of week */
+.dow-row{display:flex;gap:0}
+.dow-pill{width:54px;height:44px;border-radius:var(--radius-4);display:flex;align-items:center;justify-content:center;}
+.dow-inner{width:49px;height:44px;border-radius:var(--radius-4);display:flex;align-items:center;justify-content:center;}
+.dow-txt{font-size:18px;font-weight:500;line-height:18px}
+.dow-dark{color:#ffffff;}
+.dow-light{color:var(--color-muted-light)}
+
+/* Weeks grid */
+.weeks{display:flex;flex-direction:column;gap:0}
+.week{display:flex;gap:0}
+.day{width:54px;height:44px;border-radius:var(--radius-4);display:flex;align-items:center;justify-content:center;}
+.day-in{width:50px;height:44px;border-radius:var(--radius-6);display:flex;align-items:center;justify-content:center;}
+.day-in-brd{background:var(--color-chip-dark);border:0.5px solid var(--color-chip-border);box-shadow:var(--shadow-1);}
+.day-in-brd-light{background:#ffffff;border:0.5px solid var(--color-chip-border);box-shadow:var(--shadow-1);}
+.day-txt{font-size:18px;font-weight:500;line-height:18px}
+.day-ena-txt{color:var(--color-muted-dark);}
+.day-ena-txt-light{color:var(--color-muted-light);}
+.day-dis .day-in{border-radius:var(--radius-6)}
+.day-dis-txt{color:#ffffff;opacity:0.1;}
+.day-dis-txt-light{color:var(--color-muted-light);opacity:1}
+.day-today{
+  background:var(--color-primary);border:2px solid #ffffff;border-radius:var(--radius-6);
+  box-shadow: var(--shadow-2a);
+}
+.day-today-light{
+  background:var(--color-primary);border:2px solid #ffffff;border-radius:var(--radius-6);
+  box-shadow: var(--shadow-2a);
+}
+.day-today-txt{color:#ffffff}
+.day-today-txt-light{color:#ffffff}
+
+/* Hover (light card specific week with highlight) */
+.day-hover{
+  background:#d8e3ff;border:1px solid var(--color-primary);border-radius:var(--radius-6);
+  box-shadow:var(--shadow-1);
+}
+.day-hover-txt{color:var(--color-primary)}
+
+/* Typography defaults */
+.card, .dow-txt, .day-txt, .month-label, .year-label {font-family: var(--font-family);}
+
+/* Floating hand badge per JSON coords (x:2423,y:-3537 relative to root; normalized visually) */
+.hand-badge{
+  position:absolute;
+  left:620px; top:300px; /* tuned to overlay between cards per PNG */
+  width:72px; height:72px; pointer-events:none;
+}
+.hand-ellipse{position:absolute;left:0;top:0;width:72px;height:72px;}
+.hand-icon{position:absolute;left:24px;top:24px;width:24px;height:24px}

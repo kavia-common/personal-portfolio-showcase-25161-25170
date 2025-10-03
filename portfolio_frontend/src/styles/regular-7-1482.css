@@ -1,0 +1,157 @@
+:root{
+  /* Design tokens (subset used) */
+  --color-bg-root: #adafb3; /* style_0 */
+  --color-dark-surface: #1d1d1f; /* style_75 */
+  --color-light-surface: #f5f5f5; /* style_79 */
+  --color-on-dark: #f5f5f5; /* typo_17 */
+  --color-on-light: #141414; /* typo_20 */
+  --color-muted-dark: #ebebeb; /* typo_19 */
+  --color-muted-light: #1f1f1f; /* typo_21 */
+  --color-primary: #0047ff; /* color_0047ff */
+  --color-chip-dark: #262629; /* style_77 */
+  --color-chip-light: #ffffff; /* style_81 */
+  --color-chip-border: #e5e5e5; /* style_78/82 */
+  --shadow-0: 0 1px 2px #000e33;
+  --shadow-1: 0 1px 1px #000e33;
+  --shadow-2a: 0 3px 2px #0047ff, 0 1.5px 1px #001f70;
+  --radius-16:16px;
+  --radius-6:6px;
+  --radius-4:4px;
+  --radius-80:80px;
+  --font-family: "Lexend", Arial, sans-serif;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0}
+body{font-family:var(--font-family);}
+
+.screen{
+  position:relative;
+  width:1200px;
+  height:800px;
+  overflow:hidden;
+}
+.root-bg{
+  position:absolute;
+  left:0;top:0;right:0;bottom:0;
+  background:var(--color-bg-root);
+  border-radius:24px; /* style_0 */
+}
+
+/* Cards */
+.card{
+  position:absolute;
+  width:426px;
+  height:396px;
+  border-radius:16px;
+  box-shadow: var(--shadow-0);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.card-dark{
+  left:2262px; /* original figma canvas, but we normalize in viewport */
+  top:-4993px; /* not used; we will place relative in visible window */
+}
+/* Place visible in left and right for our static export matching visual side-by-side */
+.card-dark{
+  left:80px;
+  top:202px;
+  background:#1d1d1f;
+}
+.card-light{
+  left:530px;
+  top:92px;
+  background:#f5f5f5;
+}
+
+/* Header */
+.hdr{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:44px;
+}
+.nav-btn{
+  width:44px;height:44px;border:none;background:#262629; /* style_76 */
+  border-radius:80px;box-shadow:var(--shadow-1);cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-btn.light{ background:#ffffff; box-shadow:var(--shadow-1); }
+
+.chev{width:24px;height:24px;opacity:1;}
+/* left/right same asset, we rotate for right */
+.chev-right{ transform: rotate(180deg); }
+
+.month-year{
+  display:flex;align-items:center;gap:12px;height:44px;
+}
+
+/* Month/Year pills - dark */
+.month-pill, .year-pill{
+  height:44px; display:flex; align-items:center;
+  padding:0; border-radius:6px; box-shadow:var(--shadow-1);
+  background:#262629;
+}
+.month-pill.light, .year-pill.light{
+  background:#ffffff;
+}
+.month-inner, .year-inner{
+  display:flex;align-items:center;justify-content:flex-start;
+  height:24px; gap:8px;
+  margin-left:12px; margin-right:12px;
+}
+.month-label{font-size:24px;font-weight:700;line-height:24px;letter-spacing:-0.24px;}
+.month-label-dark{color:#f5f5f5;}
+.month-label-light{color:#141414;}
+.year-label{font-size:24px;font-weight:700;line-height:24px;letter-spacing:-0.24px;}
+.year-label-dark{color:#f5f5f5;}
+.year-label-light{color:#141414;}
+.dropdown{width:8px;height:8px}
+
+/* Days of week */
+.dow-row{display:flex;gap:0}
+.dow-row-dark .dow-inner{background:transparent}
+.dow-pill{width:54px;height:44px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.dow-inner{width:49px;height:44px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.dow-txt{font-size:18px;font-weight:500;line-height:18px;}
+.dow-dark{color:#ffffff;opacity:1;}
+.dow-light{color:#1f1f1f}
+
+/* Weeks grid */
+.weeks{display:flex;flex-direction:column;gap:0}
+.week{display:flex;gap:0}
+.day{width:54px;height:44px;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.day-in{width:50px;height:44px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.day-in-brd{background:#262629;border:0.5px solid #e5e5e5;box-shadow:var(--shadow-1);}
+.day-in-brd-light{background:#ffffff;border:0.5px solid #e5e5e5;box-shadow:var(--shadow-1);}
+.day-txt{font-size:18px;font-weight:500;line-height:18px}
+.day-ena-txt{color:#ebebeb;}
+.day-ena-txt-light{color:#1f1f1f;}
+.day-dis .day-in{border-radius:6px}
+.day-dis-txt{color:#ffffff;opacity:0.1;}
+.day-dis-txt-light{color:#1f1f1f;opacity:1}
+.day-today{
+  background:#0047ff;border:2px solid #ffffff;border-radius:6px;
+  box-shadow: 0 3px 2px #0047ff, 0 1.5px 1px #001f70;
+}
+.day-today-light{
+  background:#0047ff;border:2px solid #ffffff;border-radius:6px;
+  box-shadow: 0 3px 2px #0047ff, 0 1.5px 1px #001f70;
+}
+.day-today-txt{color:#ffffff}
+.day-today-txt-light{color:#ffffff}
+
+/* Typo defaults */
+.card, .dow-txt, .day-txt, .month-label, .year-label {font-family: var(--font-family);}
+
+/* Layout tuning to match coordinates */
+.card-dark .hdr { margin-top: 0; }
+.card-light .hdr { margin-top: 0; }
+
+/* Space between dow and weeks equals Figma: DOW at y -4913, Weeks start -4857 => 56px total height already accounted by elements without gap */
+
+/* Visual alignment: push light card slightly up to match screenshot */
+.card-light { top: 92px; left: 690px; }
+

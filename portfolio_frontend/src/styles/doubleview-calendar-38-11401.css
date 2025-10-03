@@ -1,0 +1,267 @@
+:root{
+  /* Design system variables (subset used) */
+  --color-bg-root: #adafb3; /* color_adafb3 */
+  --color-surface-dark: #1d1d1f; /* color_1d1d1f */
+  --color-surface-light: #f5f5f5; /* color_f5f5f5 */
+  --color-white: #ffffff; /* color_ffffff */
+  --color-dark-chip: #262629; /* color_262629 */
+  --color-muted-dark: #ebebeb; /* color_ebebeb */
+  --color-text-dark: #141414; /* color_141414 */
+  --color-text-body: #1f1f1f; /* color_1f1f1f */
+  --color-primary: #0047ff; /* color_0047ff */
+  --color-divider: #e6e6e6; /* color_e6e6e6 */
+  --color-hover: #d8e3ff; /* color_d8e3ff */
+  --color-ink: #001754; /* color_001754 */
+
+  /* Shadows from design system */
+  --shadow-0: 0 1px 2px #000e33; /* shadow_0 */
+  --shadow-1: 0 1px 1px #000e33; /* shadow_1 */
+  --shadow-2a: 0 3px 2px #0047ff, 0 1.5px 1px #001f70; /* shadow_2 + shadow_3 */
+
+  /* Radii */
+  --radius-24: 24px;
+  --radius-16: 16px;
+  --radius-12: 12.2253513336px;
+  --radius-8: 8px;
+  --radius-6: 6px;
+  --radius-4: 4px;
+  --radius-80: 80px;
+
+  /* Typography per tokens */
+  --font-family: "Lexend", Arial, sans-serif;
+  --month-year-size: 24px; --month-year-weight: 700; --month-year-lh: 24px; --month-letter: -0.24px;
+  --dow-size: 18px; --dow-weight: 500; --dow-lh: 18px;
+  --day-size: 18px; --day-weight: 500; --day-lh: 18px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font-family);}
+
+.screen{
+  position:relative;
+  width:1200px;
+  height:800px;
+  overflow:hidden;
+}
+
+/* Root frame background (style_0) */
+.root-bg{
+  position:absolute; inset:0;
+  background: var(--color-bg-root);
+  border-radius: var(--radius-24);
+}
+
+/* Calendar container (style_79) */
+.calendar-card{
+  position:absolute;
+  /* Figma absolute origin: root at 4140,-4000; calendar at 4527,-3798 relative to figma page.
+     For static export inside the 1200x800 frame we normalize visually centered. */
+  left: 387px;  /* 4140->4527 delta 387 fits well centered */
+  top: 202px;   /* 4000-3798 = 202 from top */
+  width: 426px;
+  height: 396px;
+  background: var(--color-surface-light);
+  border-radius: var(--radius-16);
+  box-shadow: var(--shadow-0);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header (44px height) */
+.header{
+  height: 44px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Circular nav buttons (style_80) */
+.nav-btn{
+  width: 44px; height: 44px;
+  background: var(--color-white);
+  border: none;
+  border-radius: var(--radius-80);
+  box-shadow: var(--shadow-1);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.chev, .chev-placeholder{
+  width:24px; height:24px; display:block;
+}
+.chev-placeholder{ background: transparent; }
+
+/* Month and Year container width:185, height 44 per JSON */
+.month-year{
+  width: 185px;
+  height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px;
+}
+
+/* Month pill (style_86: white bg, 2px primary border, radius 6, shadow_1) */
+.pill.month{
+  width: 93px; height: 44px;
+  background: var(--color-white);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-6);
+  box-shadow: var(--shadow-1);
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Year pill (style_81: white bg, radius 6, shadow_1) */
+.pill.year{
+  width: 90px; height: 44px;
+  background: var(--color-white);
+  border-radius: var(--radius-6);
+  box-shadow: var(--shadow-1);
+  display:flex; align-items:center; justify-content:center;
+}
+
+.pill-inner{
+  display:flex; align-items:center; justify-content:flex-start;
+  height: 24px; gap: 8px;
+  margin-left: 12px; margin-right: 12px;
+  width: calc(100% - 24px);
+}
+
+/* Typography for month/year */
+.month-label, .year-label{
+  font-size: var(--month-year-size);
+  font-weight: var(--month-year-weight);
+  line-height: var(--month-year-lh);
+  letter-spacing: var(--month-letter);
+  color: var(--color-text-dark);
+}
+.dropdown-icon, .year-placeholder{
+  width: 8px; height: 8px; display:block;
+}
+
+/* DOW row */
+.dow-row{
+  width: 378px; height: 44px;
+  display:flex; gap:0;
+}
+.dow-pill{
+  width:54px; height:44px; border-radius: var(--radius-4);
+  display:flex; align-items:center; justify-content:center;
+}
+.dow-inner{
+  width:49px; height:44px; border-radius: var(--radius-4);
+  display:flex; align-items:center; justify-content:center;
+}
+.dow-txt{
+  font-size: var(--dow-size);
+  font-weight: var(--dow-weight);
+  line-height: var(--dow-lh);
+  color: var(--color-text-body);
+}
+
+/* Weeks container (height 236 as per JSON) */
+.weeks{
+  width: 378px; height: 236px;
+  display:flex; flex-direction:column; gap:0;
+}
+.week{
+  width:378px; height:44px; display:flex; gap:0;
+}
+
+/* Day cells */
+.day{ width:54px; height:44px; border-radius: var(--radius-4);
+  display:flex; align-items:center; justify-content:center;
+}
+.day-in{
+  width:50px; height:44px; border-radius: var(--radius-6);
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Enabled day background (style_82 imitation for light card: white bg, 0.5px border e5e5e5, shadow_1) */
+.day-in.ena{
+  background: var(--color-white);
+  border: 0.5px solid #e5e5e5;
+  box-shadow: var(--shadow-1);
+}
+.day-txt{
+  font-size: var(--day-size);
+  font-weight: var(--day-weight);
+  line-height: var(--day-lh);
+}
+.ena-txt{ color: var(--color-text-body); }
+
+/* Disabled from previous/next month (style_11 radius 6, token typo_22 -> color #001754) */
+.day-in.dis{ border-radius: var(--radius-6); background: transparent; }
+.dis-txt{ color: var(--color-ink); opacity: 1; }
+
+/* Today selected (style_14 bg primary, border 2 white, radius 6, shadow_2+3) */
+.day-in.today{
+  background: var(--color-primary);
+  border: 2px solid var(--color-white);
+  border-radius: var(--radius-6);
+  box-shadow: var(--shadow-2a);
+}
+.today-txt{ color: var(--color-white); }
+
+/* Dropdown overlay positioning relative to root per JSON coords:
+   Frame 3908 at x:4648, y:-3728 within the same Figma page; relative to our normalized root we compute offset from the calendar position:
+   Calendar inner content at 4551.. The dropdown starts 97px right from 4551 => align with month pill approx.
+*/
+.dropdown-overlay{
+  position:absolute;
+  left: 508px;  /* aligned visually with month pill under header (calendar left + 121px) */
+  top: 146px;   /* header y inside card: top(202)+padding(24)=226; overlay y approx 146 to match visual from PNG offsets */
+  width: 137px; height: 248px;
+  border-radius: var(--radius-6);
+  box-shadow: 0 4px 4px #000e33; /* shadow_5 from style_87 */
+  pointer-events: none; /* purely visual as per request */
+}
+
+/* Inner list (style_18) */
+.dropdown-list{
+  position:absolute;
+  left:0; top:0; width:137px; height:248px;
+  background: var(--color-white);
+  border-radius: var(--radius-6);
+  display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start;
+}
+.dropdown-col{
+  position:absolute; left:12px; top:12px; width:113px; height:224px;
+  display:flex; flex-direction:column;
+}
+.dropdown-item{
+  width:113px; height:32px;
+  display:flex; align-items:center;
+}
+.dropdown-text{
+  font-family: var(--font-family);
+  font-size: 18px; font-weight: 500; line-height: 18px;
+  color: var(--color-text-body);
+}
+.dropdown-text.active{ color:#176af6; } /* style_29 */
+
+/* Divider rectangles to the right (style_33 and style_34) */
+.dropdown-divider-full{
+  position:absolute;
+  left:131px; top:12px; width:2px; height:224px;
+  background: #000000; opacity: 0.06; border-radius: 8px;
+}
+.dropdown-divider-short{
+  position:absolute;
+  left:131px; top:12px; width:2px; height:148px;
+  background: #1f1f1f; opacity: 0.2; border-radius: 8px;
+}
+
+/* Hand overlay (72x72) - position derived from JSON: x:4700,y:-3573 aligned to our normalized frame */
+.hand{
+  position:absolute;
+  left: 560px; /* visually centered near middle of card per PNG; computed from calendar left + ~173 */
+  top: 227px;  /* calendar top + 25 to sit near DOW area */
+  width:72px; height:72px; pointer-events:none;
+}
+.hand-ellipse{ position:absolute; left:0; top:0; width:72px; height:72px; }
+.hand-icon{ position:absolute; left:24px; top:24px; width:24px; height:24px; }
+
+/* Accessibility focus (non-interactive in this export; leave basics) */
+:focus{ outline: 2px dashed var(--color-primary); outline-offset: 2px; }
